@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://767s2jwo8m6h"]
+
+[ext_resource type="Theme" uid="uid://6r3nv6prbx2o" path="res://UI/default_theme.tres" id="1_047lb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jxpk"]
+bg_color = Color(0, 0, 0, 0.427451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jjuq6"]
+font_size = 38
+
+[node name="stage-intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_047lb")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3jxpk")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.5
+offset_top = -26.0
+offset_right = 191.5
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click Here to Start"
+label_settings = SubResource("LabelSettings_jjuq6")

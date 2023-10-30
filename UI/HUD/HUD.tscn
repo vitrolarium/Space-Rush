@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://crcnk425rcdew"]
+
+[ext_resource type="Theme" uid="uid://6r3nv6prbx2o" path="res://UI/default_theme.tres" id="1_k8gvj"]
+[ext_resource type="Script" path="res://UI/HUD/HUD.gd" id="2_t1uki"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jcgf0"]
+font_size = 18
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k8gvj")
+script = ExtResource("2_t1uki")
+
+[node name="TimerLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -116.0
+offset_right = 217.0
+offset_bottom = -36.0
+grow_vertical = 0
+theme_type_variation = &"TimerLabel"
+text = "00:00"
+vertical_alignment = 2
+
+[node name="ObjectivePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_right = 538.0
+grow_vertical = 0
+theme_type_variation = &"ObjectivePanel"
+
+[node name="ObjectiveLabel" type="Label" parent="ObjectivePanel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 511.0
+grow_vertical = 2
+text = "Objective: Avoid the asteroids."
+label_settings = SubResource("LabelSettings_jcgf0")
+autowrap_mode = 3
+
+[node name="ObjectiveProgress" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"ObjectiveProgress"
+value = 43.0
+show_percentage = false

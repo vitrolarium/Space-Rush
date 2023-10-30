@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwcsqqdmu1m7m"]
+
+[ext_resource type="Script" path="res://Components/Objects/RunnerStage.gd" id="1_iph44"]
+[ext_resource type="PackedScene" uid="uid://crcnk425rcdew" path="res://UI/HUD/HUD.tscn" id="2_h7a1r"]
+[ext_resource type="PackedScene" uid="uid://767s2jwo8m6h" path="res://UI/StageIntro/stage-intro.tscn" id="2_xkn00"]
+[ext_resource type="PackedScene" uid="uid://bjllgglcntv5r" path="res://UI/StageDone/stage-done.tscn" id="3_onwkf"]
+[ext_resource type="PackedScene" uid="uid://orouoqtsvprh" path="res://UI/Gameover/gameover.tscn" id="5_c3oyo"]
+[ext_resource type="PackedScene" uid="uid://7qqjxuoib4t7" path="res://Scenes/Objects/Spaceship/spaceship.tscn" id="6_0i11w"]
+[ext_resource type="Script" path="res://Components/Objects/Spawner.gd" id="7_5ktiy"]
+
+[node name="RunnerStage" type="Node3D" node_paths=PackedStringArray("spaceship", "intro_ui", "hud_ui", "done_ui", "gameover_ui")]
+script = ExtResource("1_iph44")
+spaceship = NodePath("Spaceship")
+intro_ui = NodePath("stage-intro")
+hud_ui = NodePath("HUD")
+done_ui = NodePath("stage-done")
+gameover_ui = NodePath("gameover")
+run_time = 70
+
+[node name="stage-intro" parent="." instance=ExtResource("2_xkn00")]
+
+[node name="stage-done" parent="." instance=ExtResource("3_onwkf")]
+visible = false
+
+[node name="HUD" parent="." instance=ExtResource("2_h7a1r")]
+visible = false
+
+[node name="gameover" parent="." instance=ExtResource("5_c3oyo")]
+visible = false
+
+[node name="Spaceship" parent="." instance=ExtResource("6_0i11w")]
+
+[node name="Spawner" type="Node3D" parent="."]
+script = ExtResource("7_5ktiy")
+
+[connection signal="dead" from="Spaceship" to="." method="game_over"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://7qqjxuoib4t7"]
+
+[ext_resource type="Script" path="res://Components/Objects/Spaceship.gd" id="1_bjtck"]
+[ext_resource type="Script" path="res://Components/PlaneMovement.gd" id="2_pf2gg"]
+[ext_resource type="Script" path="res://Components/CameraFollower.gd" id="3_ypsyj"]
+[ext_resource type="PackedScene" uid="uid://deioysrlxyvhu" path="res://Assets/Models/Spaceship/exported/ship.gltf" id="4_lnweb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1dcge"]
+size = Vector3(1.04395, 0.864617, 1.90294)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvl4l"]
+size = Vector3(2.74756, 0.339442, 1.35214)
+
+[node name="Spaceship" type="CharacterBody3D" node_paths=PackedStringArray("movement")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_bjtck")
+movement = NodePath("PlaneMovement")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0448321, 0.108488)
+shape = SubResource("BoxShape3D_1dcge")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.217755, 0.108488)
+shape = SubResource("BoxShape3D_wvl4l")
+
+[node name="PlaneMovement" type="Node" parent="."]
+script = ExtResource("2_pf2gg")
+negative_x_name = "ui_left"
+positive_x_name = "ui_right"
+negative_y_name = "ui_down"
+positive_y_name = "ui_up"
+speed = 16.0
+
+[node name="CameraFollower" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1119, 5.59683)
+top_level = true
+script = ExtResource("3_ypsyj")
+
+[node name="ship" parent="." instance=ExtResource("4_lnweb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
