@@ -1,21 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://brxrdbx6n7myw"]
+[gd_scene load_steps=3 format=3 uid="uid://brxrdbx6n7myw"]
 
-[ext_resource type="Script" path="res://Components/Objects/Dep_Asteroid.gd" id="1_vtdf7"]
 [ext_resource type="PackedScene" uid="uid://cckqafojphh3q" path="res://Assets/Models/Asteroids/exported/small_asteroid.gltf" id="2_eftcn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cynfl"]
 radius = 0.446468
 
 [node name="Asteroid" type="Area3D"]
-script = ExtResource("1_vtdf7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_cynfl")
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-aabb = AABB(-0.357699, -0.362395, -0.404198, 0.715398, 0.72479, 0.808397)
-
 [node name="small_asteroid" parent="." instance=ExtResource("2_eftcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0593456, 0)
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="despawn"]

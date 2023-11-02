@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwcsqqdmu1m7m"]
+[gd_scene load_steps=11 format=3 uid="uid://cwcsqqdmu1m7m"]
 
 [ext_resource type="Script" path="res://Components/Objects/RunnerStage.gd" id="1_iph44"]
 [ext_resource type="PackedScene" uid="uid://crcnk425rcdew" path="res://UI/HUD/HUD.tscn" id="2_h7a1r"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://orouoqtsvprh" path="res://UI/Gameover/gameover.tscn" id="5_c3oyo"]
 [ext_resource type="PackedScene" uid="uid://7qqjxuoib4t7" path="res://Scenes/Objects/Spaceship/spaceship.tscn" id="6_0i11w"]
 [ext_resource type="Script" path="res://Components/Objects/Spawner.gd" id="7_5ktiy"]
+[ext_resource type="PackedScene" uid="uid://brxrdbx6n7myw" path="res://Scenes/Objects/Asteroids/asteroid.tscn" id="8_xgiy4"]
+[ext_resource type="PackedScene" uid="uid://cibcplnig6bq" path="res://Scenes/Objects/Asteroids/big_asteroid.tscn" id="9_yp661"]
+[ext_resource type="PackedScene" uid="uid://1yhixov4qtju" path="res://Scenes/Objects/Asteroids/med_asteroid.tscn" id="10_ff28n"]
 
 [node name="RunnerStage" type="Node3D" node_paths=PackedStringArray("spaceship", "intro_ui", "hud_ui", "done_ui", "gameover_ui")]
 script = ExtResource("1_iph44")
@@ -30,7 +33,12 @@ visible = false
 
 [node name="Spaceship" parent="." instance=ExtResource("6_0i11w")]
 
-[node name="Spawner" type="Node3D" parent="."]
+[node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -122.517)
 script = ExtResource("7_5ktiy")
+player = NodePath("../Spaceship")
+objects = Array[PackedScene]([ExtResource("8_xgiy4"), ExtResource("9_yp661"), ExtResource("10_ff28n")])
+speed = 60
+max_objects = 1000
 
 [connection signal="dead" from="Spaceship" to="." method="game_over"]

@@ -56,7 +56,7 @@ func on_game_ended():
 
 func start_spawners():
 	for spawn in spawners:
-		spawn.clear()
+		#spawn.clear()
 		spawn.start()
 
 func stop_spawners():
@@ -78,4 +78,5 @@ func create_timer():
 func setup_spawners():
 	for child in get_children():
 		if child is Spawner:
+			child.setup_pool()
 			spawners.push_back(child)

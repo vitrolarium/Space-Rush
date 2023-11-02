@@ -1,6 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cibcplnig6bq"]
-
-[ext_resource type="Script" path="res://Components/Objects/Dep_Asteroid.gd" id="1_e7elc"]
+[gd_scene load_steps=4 format=3 uid="uid://cibcplnig6bq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ljixj"]
 radius = 2.38277
@@ -11,7 +9,6 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="TorusMesh" id="TorusMesh_qrnjj"]
 
 [node name="BigAsteroid" type="Area3D"]
-script = ExtResource("1_e7elc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ljixj")
@@ -20,8 +17,3 @@ shape = SubResource("SphereShape3D_ljixj")
 transform = Transform3D(2.25082, 0, 0, 0, 2.25082, 0, 0, 0, 2.25082, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_6hntj")
 mesh = SubResource("TorusMesh_qrnjj")
-
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-aabb = AABB(-2.30586, -2.3144, -2.33847, 4.61173, 4.6288, 4.67693)
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="despawn"]

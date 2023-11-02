@@ -8,6 +8,6 @@ class_name CameraFollower
 @onready var body = get_parent() as Node3D
 @onready var current_cam_pos = position 
 
-func _process(_delta):
+func _physics_process(_delta):
 	if not enabled: return
 	position = position.lerp(body.position + current_cam_pos, weight)
