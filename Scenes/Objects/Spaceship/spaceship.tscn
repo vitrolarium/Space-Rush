@@ -8,8 +8,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_1dcge"]
 size = Vector3(1.04395, 0.864617, 1.90294)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wvl4l"]
-size = Vector3(2.74756, 0.339442, 1.35214)
+[sub_resource type="SphereShape3D" id="SphereShape3D_h8sf8"]
+radius = 2.5
 
 [node name="Spaceship" type="CharacterBody3D" node_paths=PackedStringArray("movement")]
 collision_layer = 0
@@ -20,10 +20,6 @@ movement = NodePath("PlaneMovement")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0448321, 0.108488)
 shape = SubResource("BoxShape3D_1dcge")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.217755, 0.108488)
-shape = SubResource("BoxShape3D_wvl4l")
 
 [node name="PlaneMovement" type="Node" parent="."]
 script = ExtResource("2_pf2gg")
@@ -40,3 +36,23 @@ script = ExtResource("3_ypsyj")
 
 [node name="ship" parent="." instance=ExtResource("4_lnweb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="CoinCollector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CoinCollector"]
+shape = SubResource("SphereShape3D_h8sf8")
+
+[node name="AsteroidCollider" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AsteroidCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0448321, 0.108488)
+shape = SubResource("BoxShape3D_1dcge")
+
+[connection signal="area_entered" from="CoinCollector" to="." method="on_coin_collected"]
+[connection signal="area_entered" from="AsteroidCollider" to="." method="on_asteroid_collision"]

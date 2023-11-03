@@ -23,6 +23,9 @@ corner_radius_bottom_left = 1
 
 [sub_resource type="FontVariation" id="FontVariation_8ph03"]
 base_font = ExtResource("1_ainoi")
+opentype_features = {
+1667329140: 0
+}
 
 [resource]
 default_font = SubResource("FontVariation_8ph03")

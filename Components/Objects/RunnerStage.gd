@@ -27,6 +27,7 @@ func _input(event):
 		intro_ui.hide()
 		gameover_ui.hide()
 		hud_ui.show()
+		#if callgroup(spawners).get_pool_state() == true: restart else start
 		start_game()
 
 func _physics_process(_delta):
@@ -37,6 +38,13 @@ func start_game():
 	runner_timer.start()
 	revive_spaceship()
 	start_spawners()
+
+func restart_game():
+	is_running = true
+	runner_timer.start()
+	revive_spaceship()
+	restart_spawners()
+
 
 func game_over():
 	is_running = false
@@ -51,13 +59,17 @@ func on_game_ended():
 	spaceship.finish()
 	hud_ui.hide()
 	done_ui.show()
+	stop_spawners()
 	emit_signal("game_finished")
 	
 
 func start_spawners():
 	for spawn in spawners:
-		#spawn.clear()
 		spawn.start()
+
+func restart_spawners():
+	for spawn in spawners:
+		spawn.restart()
 
 func stop_spawners():
 	for spawn in spawners:

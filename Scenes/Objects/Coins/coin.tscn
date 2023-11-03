@@ -1,6 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://281m84o112uh"]
-
-[ext_resource type="Script" path="res://Components/Objects/Dep_Coin.gd" id="1_rabl5"]
+[gd_scene load_steps=4 format=3 uid="uid://281m84o112uh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5ly0v"]
 height = 0.25
@@ -15,7 +13,8 @@ rings = 1
 
 [node name="Coin" type="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-script = ExtResource("1_rabl5")
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_5ly0v")
@@ -23,8 +22,3 @@ shape = SubResource("CylinderShape3D_5ly0v")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_b2gfj")
 mesh = SubResource("CylinderMesh_uhppf")
-
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-aabb = AABB(-0.65078, -0.155466, -0.558693, 1.30156, 0.310932, 1.11739)
-
-[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="despawn"]

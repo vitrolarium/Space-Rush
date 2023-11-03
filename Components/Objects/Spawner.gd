@@ -13,13 +13,22 @@ enum SPAWN_TYPE {ASTEROID, COIN}
 @export var max_objects := 100
 @export var spawn_range := 60
 
+var is_pool_created := false
+
 var object_pool : Array[Area3D]
+
+func _ready():
+	set_physics_process(false)
 
 func _physics_process(_delta):
 	if spawn_type == SPAWN_TYPE.ASTEROID:
 		for obj in object_pool:
 			move_obj_forward(obj)
-			rotate_obj(obj)
+			rotate_obj(obj, SPAWN_TYPE.ASTEROID)
+	elif spawn_type == SPAWN_TYPE.COIN:
+		for obj in object_pool:
+			move_obj_forward(obj)
+			rotate_obj(obj, SPAWN_TYPE.COIN)
 
 func _process(_delta):
 	position.x = player.position.x
@@ -27,16 +36,26 @@ func _process(_delta):
 
 # Public methods.
 func start():
+	set_physics_process(true)
 	for obj in object_pool:
 		add_child(obj)
 		obj.position = new_random_position()
 		await get_tree().process_frame
 
+func stop():
+	set_physics_process(false)
+
+func restart():
+	for obj in object_pool:
+		obj.position = new_random_position()
+
 func setup_pool():
 	for i in max_objects:
 		var new_obj = objects.pick_random().instantiate() as Area3D
 		new_obj.top_level = true
+		new_obj.add_to_group("props")
 		object_pool.push_back(new_obj)
+	is_pool_created = true
 
 # Private methods.
 func new_random_position():
@@ -54,8 +73,10 @@ func move_obj_forward(obj):
 	if is_reached_on_end(obj):
 		obj.position = new_random_position()
 
-func rotate_obj(obj):
-	pass
-#	obj.rotation_degrees.x += 2
-#	obj.rotation_degrees.y += 5
-#	obj.rotation_degrees.z += -3
+func rotate_obj(obj : Node3D, rotation_mode : SPAWN_TYPE):
+	if rotation_mode == SPAWN_TYPE.ASTEROID:
+		obj.rotation_degrees.x = obj.position.x + obj.position.z
+		obj.rotation_degrees.y = obj.position.y + obj.position.z
+		obj.rotation_degrees.z = obj.position.z * 2
+	elif rotation_mode == SPAWN_TYPE.COIN:
+		obj.rotation_degrees.y = obj.position.y + obj.position.z * 2
