@@ -13,8 +13,6 @@ enum SPAWN_TYPE {ASTEROID, COIN}
 @export var max_objects := 100
 @export var spawn_range := 60
 
-var is_pool_created := false
-
 var object_pool : Array[Area3D]
 
 func _ready():
@@ -55,7 +53,6 @@ func setup_pool():
 		new_obj.top_level = true
 		new_obj.add_to_group("props")
 		object_pool.push_back(new_obj)
-	is_pool_created = true
 
 # Private methods.
 func new_random_position():

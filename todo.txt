@@ -1,6 +1,7 @@
-[] refazer o spawner de asteroides.
-[] usar object pooling no componente de spawn de objetos.
-[] gerenciar a movimentacao dos objetos nos spawners.
+[X] refazer o spawner de asteroides.
+[X] usar object pooling no componente de spawn de objetos.
+[X] gerenciar a movimentacao dos objetos nos spawners.
+[] melhorar o sistema de iniciar e reiniciar o jogo.
 [] adicionar efeitos sonoro.
 [] adicionar musica.
 [] level design.

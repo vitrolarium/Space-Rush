@@ -1,6 +1,8 @@
 extends Node3D
 class_name RunnerStage
 
+const SPAWNER_GROUP_NAME = "spawners"
+
 signal game_finished
 signal gameover
 
@@ -27,8 +29,9 @@ func _input(event):
 		intro_ui.hide()
 		gameover_ui.hide()
 		hud_ui.show()
+		
 		#if callgroup(spawners).get_pool_state() == true: restart else start
-		start_game()
+		start_game() # BUG essa funcao tbm e chamada quando o jogador reinicia o jogo.
 
 func _physics_process(_delta):
 	hud_ui.update_timer(runner_timer.time_left, runner_timer.wait_time)
@@ -37,13 +40,15 @@ func start_game():
 	is_running = true
 	runner_timer.start()
 	revive_spaceship()
-	start_spawners()
+	get_tree().call_group(SPAWNER_GROUP_NAME, "start")
+	#start_spawners()
 
 func restart_game():
 	is_running = true
 	runner_timer.start()
 	revive_spaceship()
-	restart_spawners()
+	get_tree().call_group(SPAWNER_GROUP_NAME, "restart")
+	#restart_spawners()
 
 
 func game_over():
@@ -51,7 +56,8 @@ func game_over():
 	runner_timer.stop()
 	gameover_ui.show()
 	hud_ui.hide()
-	stop_spawners()
+	get_tree().call_group(SPAWNER_GROUP_NAME, "stop")
+	#stop_spawners()
 	emit_signal("gameover")
 
 func on_game_ended():
@@ -59,7 +65,8 @@ func on_game_ended():
 	spaceship.finish()
 	hud_ui.hide()
 	done_ui.show()
-	stop_spawners()
+	get_tree().call_group(SPAWNER_GROUP_NAME, "stop")
+	#stop_spawners()
 	emit_signal("game_finished")
 	
 
@@ -91,4 +98,5 @@ func setup_spawners():
 	for child in get_children():
 		if child is Spawner:
 			child.setup_pool()
-			spawners.push_back(child)
+			child.add_to_group(SPAWNER_GROUP_NAME)
+			#spawners.push_back(child)
