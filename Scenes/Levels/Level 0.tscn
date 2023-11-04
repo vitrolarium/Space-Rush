@@ -14,12 +14,13 @@
 
 [node name="RunnerStage" type="Node3D" node_paths=PackedStringArray("spaceship", "intro_ui", "hud_ui", "done_ui", "gameover_ui")]
 script = ExtResource("1_iph44")
+next_stage = ExtResource("8_xgiy4")
 spaceship = NodePath("Spaceship")
 intro_ui = NodePath("stage-intro")
 hud_ui = NodePath("HUD")
 done_ui = NodePath("stage-done")
 gameover_ui = NodePath("gameover")
-run_time = 20
+run_time = 3
 
 [node name="stage-intro" parent="." instance=ExtResource("2_xkn00")]
 
@@ -50,6 +51,11 @@ spawn_type = 1
 objects = Array[PackedScene]([ExtResource("11_jci77")])
 speed = 50
 
+[connection signal="pressed" from="stage-intro/Panel/Button" to="." method="on_start_game"]
+[connection signal="pressed" from="stage-done/Button" to="." method="goto_next_stage"]
+[connection signal="pressed" from="gameover/RestartButton" to="." method="restart_game"]
 [connection signal="dead" from="Spaceship" to="." method="game_over"]
 
+[editable path="stage-intro"]
+[editable path="stage-done"]
 [editable path="gameover"]

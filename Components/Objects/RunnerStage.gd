@@ -6,12 +6,13 @@ const SPAWNER_GROUP_NAME = "spawners"
 signal game_finished
 signal gameover
 
+@export var next_stage : PackedScene
 @export var spaceship : Spaceship
 @export var intro_ui : Control
 @export var hud_ui : Control
 @export var done_ui : Control
 @export var gameover_ui : Control
-@export var run_time := 10
+@export var run_time := 30
 
 var spawners : Array[Spawner]
 var runner_timer : Timer
@@ -22,34 +23,32 @@ func _ready():
 	spaceship.disable_movement()
 	setup_spawners()
 
-func _input(event):
-	if event is InputEventMouseButton \
-	and event.button_index == MOUSE_BUTTON_LEFT \
-	and event.pressed and not is_running:
-		intro_ui.hide()
-		gameover_ui.hide()
-		hud_ui.show()
-		
-		#if callgroup(spawners).get_pool_state() == true: restart else start
-		start_game() # BUG essa funcao tbm e chamada quando o jogador reinicia o jogo.
-
 func _physics_process(_delta):
 	hud_ui.update_timer(runner_timer.time_left, runner_timer.wait_time)
+
+func on_start_game():
+	intro_ui.hide()
+	gameover_ui.hide()
+	hud_ui.show()
+	start_game()
+
 
 func start_game():
 	is_running = true
 	runner_timer.start()
 	revive_spaceship()
 	get_tree().call_group(SPAWNER_GROUP_NAME, "start")
-	#start_spawners()
 
 func restart_game():
+	revive_spaceship()
 	is_running = true
 	runner_timer.start()
-	revive_spaceship()
 	get_tree().call_group(SPAWNER_GROUP_NAME, "restart")
-	#restart_spawners()
+	gameover_ui.hide()
+	hud_ui.show()
 
+func goto_next_stage():
+	get_tree().change_scene_to_packed(next_stage)
 
 func game_over():
 	is_running = false
@@ -57,7 +56,6 @@ func game_over():
 	gameover_ui.show()
 	hud_ui.hide()
 	get_tree().call_group(SPAWNER_GROUP_NAME, "stop")
-	#stop_spawners()
 	emit_signal("gameover")
 
 func on_game_ended():
@@ -66,7 +64,6 @@ func on_game_ended():
 	hud_ui.hide()
 	done_ui.show()
 	get_tree().call_group(SPAWNER_GROUP_NAME, "stop")
-	#stop_spawners()
 	emit_signal("game_finished")
 	
 
@@ -99,4 +96,3 @@ func setup_spawners():
 		if child is Spawner:
 			child.setup_pool()
 			child.add_to_group(SPAWNER_GROUP_NAME)
-			#spawners.push_back(child)

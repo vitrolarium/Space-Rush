@@ -46,6 +46,7 @@ func stop():
 func restart():
 	for obj in object_pool:
 		obj.position = new_random_position()
+	set_physics_process(true)
 
 func setup_pool():
 	for i in max_objects:
