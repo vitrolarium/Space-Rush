@@ -20,7 +20,7 @@ intro_ui = NodePath("stage-intro")
 hud_ui = NodePath("HUD")
 done_ui = NodePath("stage-done")
 gameover_ui = NodePath("gameover")
-run_time = 3
+run_time = 8
 
 [node name="stage-intro" parent="." instance=ExtResource("2_xkn00")]
 
