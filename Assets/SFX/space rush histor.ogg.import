@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://8l06gife8bat"
+path="res://.godot/imported/space rush histor.ogg-f819c12b8e987c8056df9a60f84a1236.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/SFX/space rush histor.ogg"
+dest_files=["res://.godot/imported/space rush histor.ogg-f819c12b8e987c8056df9a60f84a1236.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

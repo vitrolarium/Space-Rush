@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwcsqqdmu1m7m"]
+[gd_scene load_steps=17 format=3 uid="uid://cwcsqqdmu1m7m"]
 
 [ext_resource type="Script" path="res://Components/Objects/RunnerStage.gd" id="1_iph44"]
 [ext_resource type="PackedScene" uid="uid://83u3qvdvlq5m" path="res://Scenes/Levels/Level 1.tscn" id="2_eodwb"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cibcplnig6bq" path="res://Scenes/Objects/Asteroids/big_asteroid.tscn" id="9_yp661"]
 [ext_resource type="PackedScene" uid="uid://1yhixov4qtju" path="res://Scenes/Objects/Asteroids/med_asteroid.tscn" id="10_ff28n"]
 [ext_resource type="PackedScene" uid="uid://281m84o112uh" path="res://Scenes/Objects/Coins/coin.tscn" id="11_jci77"]
+[ext_resource type="AudioStream" uid="uid://8l06gife8bat" path="res://Assets/SFX/space rush histor.ogg" id="13_spnmy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6fqdv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -45,6 +46,7 @@ intro_ui = NodePath("stage-intro")
 hud_ui = NodePath("HUD")
 done_ui = NodePath("stage-done")
 gameover_ui = NodePath("gameover")
+run_time = 69
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dnqte")
@@ -83,6 +85,10 @@ spawn_type = 1
 objects = Array[PackedScene]([ExtResource("11_jci77")])
 speed = 50
 max_objects = 300
+
+[node name="bgmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_spnmy")
+volume_db = -8.0
 
 [connection signal="pressed" from="stage-intro/Panel/Button" to="." method="on_start_game"]
 [connection signal="pressed" from="stage-done/Button" to="." method="goto_next_stage"]

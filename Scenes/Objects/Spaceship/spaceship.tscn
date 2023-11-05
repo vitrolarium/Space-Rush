@@ -25,10 +25,10 @@ shape = SubResource("BoxShape3D_1dcge")
 
 [node name="PlaneMovement" type="Node" parent="."]
 script = ExtResource("2_pf2gg")
-negative_x_name = "ui_left"
-positive_x_name = "ui_right"
-negative_y_name = "ui_down"
-positive_y_name = "ui_up"
+negative_x_name = "move_left"
+positive_x_name = "move_right"
+negative_y_name = "move_down"
+positive_y_name = "move_up"
 speed = 16.0
 
 [node name="CameraFollower" type="Camera3D" parent="."]

@@ -27,6 +27,7 @@ func _physics_process(_delta):
 	hud_ui.update_timer(runner_timer.time_left, runner_timer.wait_time)
 
 func on_start_game():
+	$bgmusic.play()
 	intro_ui.hide()
 	gameover_ui.hide()
 	hud_ui.show()
@@ -40,6 +41,7 @@ func start_game():
 	get_tree().call_group(SPAWNER_GROUP_NAME, "start")
 
 func restart_game():
+	$bgmusic.stream_paused = false
 	revive_spaceship()
 	is_running = true
 	runner_timer.start()
@@ -51,9 +53,11 @@ func goto_next_stage():
 	get_tree().change_scene_to_packed(next_stage)
 
 func game_over():
+	$bgmusic.stream_paused = true
 	is_running = false
 	runner_timer.stop()
 	gameover_ui.show()
+	gameover_ui.get_child(0).grab_focus()
 	hud_ui.hide()
 	get_tree().call_group(SPAWNER_GROUP_NAME, "stop")
 	emit_signal("gameover")

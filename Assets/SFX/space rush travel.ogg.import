@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cyjhyvro7c8li"
+path="res://.godot/imported/space rush travel.ogg-3080a49e007dddf4b32c347b3851e7dc.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/SFX/space rush travel.ogg"
+dest_files=["res://.godot/imported/space rush travel.ogg-3080a49e007dddf4b32c347b3851e7dc.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

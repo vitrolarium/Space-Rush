@@ -54,13 +54,10 @@ autowrap_mode = 3
 [node name="ObjectiveProgress" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -3.0
+offset_bottom = 5.0
 grow_horizontal = 2
-grow_vertical = 0
 theme_type_variation = &"ObjectiveProgress"
 value = 43.0
 show_percentage = false
