@@ -24,11 +24,12 @@ func on_asteroid_collision(area : Area3D):
 		die()
 		area.hide()
 
-func collect_coin(value : int):
+func collect_coin(_value : int):
 	if is_finished: return
-	print("ganhei ", value, " moedas B)")
+	$coin.play()
 
 func die():
+	$explode.play()
 	if is_finished: return
 	is_dead = true
 	emit_signal("dead")

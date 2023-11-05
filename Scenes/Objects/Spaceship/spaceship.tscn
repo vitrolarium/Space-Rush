@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://7qqjxuoib4t7"]
+[gd_scene load_steps=9 format=3 uid="uid://7qqjxuoib4t7"]
 
 [ext_resource type="Script" path="res://Components/Objects/Spaceship.gd" id="1_bjtck"]
 [ext_resource type="Script" path="res://Components/PlaneMovement.gd" id="2_pf2gg"]
 [ext_resource type="Script" path="res://Components/CameraFollower.gd" id="3_ypsyj"]
 [ext_resource type="PackedScene" uid="uid://deioysrlxyvhu" path="res://Assets/Models/Spaceship/exported/ship.gltf" id="4_lnweb"]
+[ext_resource type="AudioStream" uid="uid://dfl3p4eutbxno" path="res://Assets/SFX/pickupCoin.wav" id="5_0a1o2"]
+[ext_resource type="AudioStream" uid="uid://bnla6nuvv5vqs" path="res://Assets/SFX/explosion.wav" id="6_1wseb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1dcge"]
 size = Vector3(1.04395, 0.864617, 1.90294)
@@ -53,6 +55,14 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AsteroidCollider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0448321, 0.108488)
 shape = SubResource("BoxShape3D_1dcge")
+
+[node name="coin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0a1o2")
+volume_db = -12.316
+
+[node name="explode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1wseb")
+volume_db = -7.225
 
 [connection signal="area_entered" from="CoinCollector" to="." method="on_coin_collected"]
 [connection signal="area_entered" from="AsteroidCollider" to="." method="on_asteroid_collision"]
