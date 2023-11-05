@@ -32,7 +32,7 @@ positive_y_name = "move_up"
 speed = 16.0
 
 [node name="CameraFollower" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1119, 5.59683)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30228, 8.9359)
 top_level = true
 script = ExtResource("3_ypsyj")
 
