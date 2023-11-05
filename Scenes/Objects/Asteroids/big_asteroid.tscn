@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7dffnwq8hn7p" path="res://Assets/Models/Asteroids/exported/big_asteroid.gltf" id="1_sajr6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ljixj"]
-radius = 3.94145
+radius = 2.72886
 
 [node name="BigAsteroid" type="Area3D"]
 collision_layer = 4

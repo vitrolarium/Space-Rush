@@ -58,7 +58,7 @@ shape = SubResource("BoxShape3D_1dcge")
 
 [node name="coin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_0a1o2")
-volume_db = -12.316
+volume_db = -15.0
 
 [node name="explode" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_1wseb")
