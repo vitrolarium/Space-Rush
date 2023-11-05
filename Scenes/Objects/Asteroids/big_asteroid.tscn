@@ -1,21 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cibcplnig6bq"]
+[gd_scene load_steps=3 format=3 uid="uid://cibcplnig6bq"]
+
+[ext_resource type="PackedScene" uid="uid://b7dffnwq8hn7p" path="res://Assets/Models/Asteroids/exported/big_asteroid.gltf" id="1_sajr6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ljixj"]
-radius = 2.38277
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hntj"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="TorusMesh" id="TorusMesh_qrnjj"]
+radius = 3.94145
 
 [node name="BigAsteroid" type="Area3D"]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317728, -0.348122, 0)
 shape = SubResource("SphereShape3D_ljixj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.25082, 0, 0, 0, 2.25082, 0, 0, 0, 2.25082, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_6hntj")
-mesh = SubResource("TorusMesh_qrnjj")
+[node name="big_asteroid" parent="." instance=ExtResource("1_sajr6")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
