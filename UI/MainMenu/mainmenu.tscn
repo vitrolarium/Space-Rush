@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1hx1y1kxr5fb"]
+
+[ext_resource type="Script" path="res://UI/MainMenu/mainmenu.gd" id="1_d86bs"]
+[ext_resource type="PackedScene" uid="uid://cwcsqqdmu1m7m" path="res://Scenes/Levels/Level 0.tscn" id="2_al1rk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ij8t"]
+font_size = 64
+
+[sub_resource type="Theme" id="Theme_hlrp4"]
+Button/font_sizes/font_size = 60
+
+[node name="mainmenu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d86bs")
+game_file = ExtResource("2_al1rk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 50.0
+offset_right = 749.0
+offset_bottom = 134.0
+text = "Space Rush"
+label_settings = SubResource("LabelSettings_5ij8t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = 185.0
+offset_right = 544.0
+grow_vertical = 2
+theme = SubResource("Theme_hlrp4")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play"
+alignment = 0
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "soundtrack"
+alignment = 0
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "credits"
+alignment = 0
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "leave"
+alignment = 0
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
