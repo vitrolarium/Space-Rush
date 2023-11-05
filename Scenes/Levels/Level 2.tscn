@@ -86,8 +86,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -122.517)
 script = ExtResource("8_rm5f7")
 player = NodePath("../Spaceship")
 objects = Array[PackedScene]([ExtResource("2_1wr1p"), ExtResource("9_ogmh5"), ExtResource("10_5rjhv")])
-speed = 100
-max_objects = 800
+speed = 50
+max_objects = 600
 
 [node name="Spawner2" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -122.517)
