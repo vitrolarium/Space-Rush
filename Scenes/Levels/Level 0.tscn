@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwcsqqdmu1m7m"]
+[gd_scene load_steps=15 format=3 uid="uid://cwcsqqdmu1m7m"]
 
 [ext_resource type="Script" path="res://Components/Objects/RunnerStage.gd" id="1_iph44"]
 [ext_resource type="PackedScene" uid="uid://crcnk425rcdew" path="res://UI/HUD/HUD.tscn" id="2_h7a1r"]
@@ -12,6 +12,30 @@
 [ext_resource type="PackedScene" uid="uid://1yhixov4qtju" path="res://Scenes/Objects/Asteroids/med_asteroid.tscn" id="10_ff28n"]
 [ext_resource type="PackedScene" uid="uid://281m84o112uh" path="res://Scenes/Objects/Coins/coin.tscn" id="11_jci77"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6fqdv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7fgt4"]
+sky_material = SubResource("ProceduralSkyMaterial_6fqdv")
+
+[sub_resource type="Environment" id="Environment_dnqte"]
+background_mode = 1
+background_color = Color(0.0627451, 0, 0.109804, 1)
+sky = SubResource("Sky_7fgt4")
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.937255, 1, 1)
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.0256
+fog_sky_affect = 0.0
+volumetric_fog_sky_affect = 0.0
+
 [node name="RunnerStage" type="Node3D" node_paths=PackedStringArray("spaceship", "intro_ui", "hud_ui", "done_ui", "gameover_ui")]
 script = ExtResource("1_iph44")
 next_stage = ExtResource("8_xgiy4")
@@ -20,7 +44,15 @@ intro_ui = NodePath("stage-intro")
 hud_ui = NodePath("HUD")
 done_ui = NodePath("stage-done")
 gameover_ui = NodePath("gameover")
-run_time = 8
+run_time = 70
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dnqte")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.440943, -0.425674, 0.790172, -0.235738, 0.794543, 0.559579, 0, 0, 0)
+light_color = Color(0.486275, 0.345098, 1, 1)
+light_energy = 1.955
 
 [node name="stage-intro" parent="." instance=ExtResource("2_xkn00")]
 
